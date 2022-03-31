@@ -22,9 +22,10 @@ public class HomeController {
 	
 	@GetMapping
 	public String goToHome(Model model) {
-		List<ServicePackage> services = serviceRepo.getServices();
+		List<ServicePackage> services = serviceRepo.findAll();
 		model.addAttribute("services",services);
 		model.addAttribute("user", null);
+		System.out.println(services.get(0).getMobilePhones().get(0).getMin());
 		return "home";
 	}
 

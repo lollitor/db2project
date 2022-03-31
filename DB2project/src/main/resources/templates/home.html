@@ -6,24 +6,63 @@
 <title>Home</title>
 </head>
 <body>
-<div class="container text-center">
-<table>
+<div class="container text-center" th:unless="${#lists.isEmpty(services)}">
+    
+  <h2>service packages</h2>
+  
+  <table>
     <thead>
-        <tr>
-            <th> Our service packages </th>
-        </tr>
+      <tr>
+        <th >Name</th>
+        <th >Mobile Phone</th>
+        <th >Mobile Internet</th>
+        <th >Fixed Phone</th>
+        <th >Fixed Internet</th>
+      </tr>
     </thead>
     <tbody>
-	<tr th:if="${services.empty}">
-            <td colspan="2"> No service available </td>
-        </tr>
-        <tr th:each="service : ${services}">
-            <td><span th:text="${service.name}"> Title </span></td>
-            
-        </tr>
+      <tr th:each="s : ${services}">
+        <td th:text="${s.name}"></td>
+        <td>
+          <table>
+            <tbody>
+              <tr th:each="m : ${s.mobilePhones}">
+                <td th:text="${m.min}+ ' ' +min"></td>
+                <td th:text="${m.sms}+ ' '+ sms"></td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+        <td>
+          <table>
+            <tbody>
+              <tr th:each="m : ${s.mobileInternets}">
+                <td th:text="${m.gigabytes}+ ' '+ Gb"></td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+        <td>
+          <table>
+            <tbody>
+              <tr th:each="m : ${s.fixedPhones}">
+                <td th:text="${m.name} "></td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+        <td>
+          <table>
+            <tbody>
+              <tr th:each="m : ${s.fixedInternets}">
+                <td th:text="${m.gigabytes}+ ' '+ Gb"></td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
     </tbody>
-</table>
-
+  </table>
 </div>
     <span th:if="${user == null}"><a th:href="@{/login}">sign in to buy a service package!</a></span>
     <span th:unless="${user ==null}">Welcome <a th:text="${user.username}"></a> buy a service package (link) </span>
