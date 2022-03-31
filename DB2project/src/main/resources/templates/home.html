@@ -6,10 +6,11 @@
 <title>Home</title>
 </head>
 <body>
+<div class="container text-center">
 <table>
     <thead>
         <tr>
-            <th> Service name </th>
+            <th> Our service packages </th>
         </tr>
     </thead>
     <tbody>
@@ -22,6 +23,10 @@
         </tr>
     </tbody>
 </table>
-<p th:text="${user.username}"></p>
+
+</div>
+    <span th:if="${user == null}"><a th:href="@{/login}">sign in to buy a service package!</a></span>
+    <span th:unless="${user ==null}">Welcome <a th:text="${user.username}"></a> buy a service package (link) </span>
+
 </body>
 </html>

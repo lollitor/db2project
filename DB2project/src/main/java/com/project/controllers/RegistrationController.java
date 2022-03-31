@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -24,9 +25,14 @@ public class RegistrationController {
 	}
 	
 	@PostMapping
-	public String registrateConsumer (Consumer user) { //si può fare meglio il passaggio della variabile
+	public String registrateConsumer (@ModelAttribute(name="user") Consumer user) {
 		
-		consumerRepo.save(user);
+		try {
+			consumerRepo.save(user);
+		} catch (Exception e) {
+			return "failedRegistration";
+		}
+		
 		return "success";
 	}
 

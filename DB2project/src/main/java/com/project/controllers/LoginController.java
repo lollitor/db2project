@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -31,10 +32,10 @@ public class LoginController {
 	}
 	
 	@PostMapping
-	public String goToHome(Consumer user, Model model) {
+	public String goToHome(@ModelAttribute(name="user") Consumer user, Model model) {
 		Consumer user2 =consumerRepo.checkLogin(user.getUsername(), user.getPassword());
 		if(user2!=null) {
-			List<ServicePackage> services = serviceRepo.findAll();
+			List<ServicePackage> services = serviceRepo.getServices();
 			model.addAttribute("services", services);
 			model.addAttribute("user", user2);
 			return "home";
