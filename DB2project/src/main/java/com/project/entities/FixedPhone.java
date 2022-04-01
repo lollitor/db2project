@@ -16,7 +16,7 @@ import javax.persistence.Table;
 @Table(name="fixed_phone")
 public class FixedPhone {
 	
-	@Id @Column(name = "idfixed_phone")
+	@Id @Column(name = "fixed_phone")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	

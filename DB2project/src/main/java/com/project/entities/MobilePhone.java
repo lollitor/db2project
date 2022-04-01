@@ -16,7 +16,7 @@ import javax.persistence.Table;
 @Table(name="mobile_phone")
 public class MobilePhone {
 	
-	@Id @Column(name = "idmobile_phone")
+	@Id @Column(name = "mobile_phone")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
@@ -24,10 +24,10 @@ public class MobilePhone {
 	
 	private int sms;
 	
-	@Column(name = "min_extra_fee")
+	@Column(name = "min_fee")
 	private float minExtraFee;
 	
-	@Column(name = "sms_extra_fee")
+	@Column(name = "sms_fee")
 	private float smsExtraFee;
 	
 	@ManyToMany(mappedBy = "mobilePhones")

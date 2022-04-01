@@ -17,22 +17,22 @@ import javax.persistence.Table;
 @Table(name="order")
 public class Order {
 	
-	@Id @Column(name = "idorder")
+	@Id @Column(name = "order")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@Column(name = "date_hour")
+	
 	private Timestamp timestamp;
 	
 	private float value;
 	
-	@Column (name = "times_rejected")
+	
 	private int rejected;
 	
 	private Byte valid; // Equivalent of TINYINT
 	
 	@OneToOne
-	@JoinColumn(name = "service_subscription_idservice_subscription")
+	@JoinColumn(name = "subscription")
 	private Subscription serviceSubscription;
 
 	public Order() {

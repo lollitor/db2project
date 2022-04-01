@@ -16,7 +16,7 @@ import javax.persistence.Table;
 @Table(name="mobile_internet")
 public class MobileInternet {
 	
-	@Id @Column(name = "idmobile_internet")
+	@Id @Column(name = "mobile_internet")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	

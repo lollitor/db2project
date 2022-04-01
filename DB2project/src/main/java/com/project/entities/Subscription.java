@@ -15,10 +15,10 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name="service_subscription")
+@Table(name="subscription")
 public class Subscription {
 	
-	@Id @Column(name = "idservice_subscription")
+	@Id @Column(name = "subscription")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
@@ -27,11 +27,11 @@ public class Subscription {
 	private Date activationDate;
 	
 	@ManyToOne
-	@JoinColumn(name = "consumer_idconsumer")
+	@JoinColumn(name = "consumer")
 	private Consumer consumer;
 	
 	@ManyToOne
-	@JoinColumn(name = "service_package_idservice_package")
+	@JoinColumn(name = "package")
 	private ServicePackage servicePackage;
 	
 	@OneToOne(mappedBy = "serviceSubscription")

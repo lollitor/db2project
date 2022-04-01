@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -16,7 +17,7 @@ import javax.persistence.Table;
 @Table(name="validity_period")
 public class ValidityPeriod {
 	
-	@Id @Column(name = "idvalidity_period")
+	@Id @Column(name = "validity_period")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
@@ -25,7 +26,7 @@ public class ValidityPeriod {
 	@Column(name = "monthly_fee")
 	private float monthlyFee;
 	
-	@OneToMany(mappedBy = "validityPeriod")
+	@ManyToMany(mappedBy = "validityPeriods")
 	private List<ServicePackage> servicePackages;
 
 	public ValidityPeriod() {

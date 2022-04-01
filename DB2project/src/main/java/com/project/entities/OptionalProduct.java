@@ -16,7 +16,7 @@ import javax.persistence.Table;
 @Table(name="optional_product")
 public class OptionalProduct {
 	
-	@Id @Column(name= "idoptional_product")
+	@Id @Column(name= "optional_product")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	

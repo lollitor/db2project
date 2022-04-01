@@ -9,7 +9,7 @@ import com.project.entities.ServicePackage;
 
 public interface ServicePackageRepository extends JpaRepository<ServicePackage,Integer> {
 	
-	@Query("SELECT s FROM ServicePackage s GROUP BY s.name")
+	@Query("SELECT s FROM ServicePackage s ORDER BY s.name")
 	public List<ServicePackage> getServices();
 
 }

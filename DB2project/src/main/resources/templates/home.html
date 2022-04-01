@@ -18,6 +18,7 @@
         <th >Mobile Internet</th>
         <th >Fixed Phone</th>
         <th >Fixed Internet</th>
+        <th >Validity Period</th>
       </tr>
     </thead>
     <tbody>
@@ -56,6 +57,15 @@
             <tbody>
               <tr th:each="m : ${s.fixedInternets}">
                 <td th:text="${m.gigabytes}+ ' '+ Gb"></td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+        <td>
+          <table>
+            <tbody>
+              <tr th:each="m : ${s.validityPeriods}">
+                <td th:text="${m.monthlyFee}+' EUR per '+${m.months} +' months'"></td>
               </tr>
             </tbody>
           </table>

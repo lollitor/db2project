@@ -17,51 +17,54 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name="service_package")
+@Table(name="package")
 public class ServicePackage {
 	
-	@Id @Column(name = "idservice_package")
+	@Id @Column(name = "package")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
 	private String name;
 	
-	@ManyToOne
-	@JoinColumn(name = "validity_period_idvalidity_period")
-	private ValidityPeriod validityPeriod;
+	@ManyToMany
+	@JoinTable(name = "package_has_validity_period", joinColumns = {
+			@JoinColumn(name = "package")}, inverseJoinColumns = {
+					@JoinColumn(name = "validity_period")
+			})
+	private List<ValidityPeriod> validityPeriods;
 	
 	@ManyToMany
-	@JoinTable(name = "service_package_has_fixed_phone", joinColumns = {
-			@JoinColumn(name = "service_package_idservice_package")}, inverseJoinColumns = {
-					@JoinColumn(name = "fixed_phone_idfixed_phone")
+	@JoinTable(name = "package_has_fixed_phone", joinColumns = {
+			@JoinColumn(name = "package")}, inverseJoinColumns = {
+					@JoinColumn(name = "fixed_phone")
 			})
 	private List<FixedPhone> fixedPhones;
 	
 	@ManyToMany
-	@JoinTable(name = "service_package_has_fixed_internet", joinColumns = {
-			@JoinColumn(name = "service_package_idservice_package")}, inverseJoinColumns = {
-					@JoinColumn(name = "fixed_internet_idfixed_internet")
+	@JoinTable(name = "package_has_fixed_internet", joinColumns = {
+			@JoinColumn(name = "package")}, inverseJoinColumns = {
+					@JoinColumn(name = "fixed_internet")
 			})
 	private List<FixedInternet> fixedInternets;
 	
 	@ManyToMany
-	@JoinTable(name = "service_package_has_mobile_internet", joinColumns = {
-			@JoinColumn(name = "service_package_idservice_package")}, inverseJoinColumns = {
-					@JoinColumn(name = "mobile_internet_idmobile_internet")
+	@JoinTable(name = "package_has_mobile_internet", joinColumns = {
+			@JoinColumn(name = "package")}, inverseJoinColumns = {
+					@JoinColumn(name = "mobile_internet")
 			})
 	private List<MobileInternet> mobileInternets;
 	
 	@ManyToMany
-	@JoinTable(name = "service_package_has_mobile_phone", joinColumns = {
-			@JoinColumn(name = "service_package_idservice_package")}, inverseJoinColumns = {
-					@JoinColumn(name = "mobile_phone_idmobile_phone")
+	@JoinTable(name = "package_has_mobile_phone", joinColumns = {
+			@JoinColumn(name = "package")}, inverseJoinColumns = {
+					@JoinColumn(name = "mobile_phone")
 			})
 	private List<MobilePhone> mobilePhones;
 	
 	@ManyToMany
-	@JoinTable(name = "service_package_has_optional_product", joinColumns = {
-			@JoinColumn(name = "service_package_idservice_package")}, inverseJoinColumns = {
-					@JoinColumn(name = "optional_product_idoptional_product")
+	@JoinTable(name = "package_has_optional_product", joinColumns = {
+			@JoinColumn(name = "package")}, inverseJoinColumns = {
+					@JoinColumn(name = "optional_product")
 			})
 	private List<OptionalProduct> optionalProducts;
 	
@@ -96,13 +99,13 @@ public class ServicePackage {
 	}
 
 
-	public ValidityPeriod getValidityPeriod() {
-		return validityPeriod;
+	public List<ValidityPeriod> getValidityPeriods() {
+		return validityPeriods;
 	}
 
 
-	public void setValidityPeriod(ValidityPeriod validityPeriod) {
-		this.validityPeriod = validityPeriod;
+	public void setValidityPeriods(List<ValidityPeriod> validityPeriods) {
+		this.validityPeriods = validityPeriods;
 	}
 
 

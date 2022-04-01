@@ -25,7 +25,6 @@ public class HomeController {
 		List<ServicePackage> services = serviceRepo.findAll();
 		model.addAttribute("services",services);
 		model.addAttribute("user", null);
-		System.out.println(services.get(0).getMobilePhones().get(0).getMin());
 		return "home";
 	}
 

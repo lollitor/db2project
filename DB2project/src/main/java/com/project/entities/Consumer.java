@@ -22,7 +22,7 @@ public class Consumer {
 		// TODO Auto-generated constructor stub
 	}
 
-	@Id @Column(name="idconsumer")
+	@Id @Column(name="consumer")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
