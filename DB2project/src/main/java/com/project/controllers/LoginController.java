@@ -35,7 +35,9 @@ public class LoginController {
 	public String goToHome(@ModelAttribute(name="user") Consumer user, Model model) {
 		Consumer user2 =consumerRepo.checkLogin(user.getUsername(), user.getPassword());
 		if(user2!=null) {
+			ServicePackage chosenService = new ServicePackage();
 			List<ServicePackage> services = serviceRepo.findAll();
+			model.addAttribute("chosenService", chosenService );
 			model.addAttribute("services", services);
 			model.addAttribute("user", user2);
 			return "home";

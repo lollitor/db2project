@@ -23,7 +23,9 @@
     </thead>
     <tbody>
       <tr th:each="s : ${services}">
-        <td th:text="${s.name}"></td>
+      <td><a th:href="@{/subscribe}" th:text="${s.name}" ${chosenService}/></td>
+        
+        
         <td>
           <table>
             <tbody>

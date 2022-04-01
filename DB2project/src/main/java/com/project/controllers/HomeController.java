@@ -22,7 +22,9 @@ public class HomeController {
 	
 	@GetMapping
 	public String goToHome(Model model) {
+		ServicePackage chosenService = new ServicePackage();
 		List<ServicePackage> services = serviceRepo.findAll();
+		model.addAttribute("chosenService", chosenService );
 		model.addAttribute("services",services);
 		model.addAttribute("user", null);
 		return "home";
