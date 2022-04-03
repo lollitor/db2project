@@ -23,7 +23,7 @@
     </thead>
     <tbody>
       <tr th:each="s : ${services}">
-      <td><a th:href="@{/subscribe}" th:text="${s.name}" ${chosenService}/></td>
+      <td><a th:href="@{/subscribe}" th:text="${s.name}" /></td>
         
         
         <td>
@@ -77,7 +77,7 @@
   </table>
 </div>
     <span th:if="${user == null}"><a th:href="@{/login}">sign in to buy a service package!</a></span>
-    <span th:unless="${user ==null}">Welcome <a th:text="${user.username}"></a> buy a service package (link) </span>
+    <span th:unless="${user ==null}">Welcome back <a th:text="${user.username}">!</a> </span>
 
 </body>
 </html>

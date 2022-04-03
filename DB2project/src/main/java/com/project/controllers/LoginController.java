@@ -2,6 +2,8 @@ package com.project.controllers;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,14 +34,17 @@ public class LoginController {
 	}
 	
 	@PostMapping
-	public String goToHome(@ModelAttribute(name="user") Consumer user, Model model) {
+	public String goToHome(HttpSession session, Model model, @ModelAttribute(name="user") Consumer user) {
+		//Consumer user = (Consumer) session.getAttribute("user");
 		Consumer user2 =consumerRepo.checkLogin(user.getUsername(), user.getPassword());
 		if(user2!=null) {
 			ServicePackage chosenService = new ServicePackage();
 			List<ServicePackage> services = serviceRepo.findAll();
 			model.addAttribute("chosenService", chosenService );
 			model.addAttribute("services", services);
-			model.addAttribute("user", user2);
+			//model.addAttribute("user", user2);
+			session.setAttribute("user", user2);
+			
 			return "home";
 		}
 		return "failed";
