@@ -35,8 +35,7 @@ public class LoginController {
 	
 	@PostMapping
 	public String goToHome(HttpSession session, Model model, @ModelAttribute(name="user") Consumer user) {
-		//Consumer user = (Consumer) session.getAttribute("user");
-		Consumer user2 =consumerRepo.checkLogin(user.getUsername(), user.getPassword());
+	    Consumer user2 =consumerRepo.checkLogin(user.getUsername(), user.getPassword());
 		if(user2!=null) {
 			ServicePackage chosenService = new ServicePackage();
 			List<ServicePackage> services = serviceRepo.findAll();

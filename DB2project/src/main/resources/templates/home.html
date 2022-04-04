@@ -23,7 +23,7 @@
     </thead>
     <tbody>
       <tr th:each="s : ${services}">
-      <td><a th:href="@{/subscribe}" th:text="${s.name}" /></td>
+      <td><a th:href="@{/subscribe(serviceId=${s.id})}" th:text="${s.name}" /></td>
         
         
         <td>

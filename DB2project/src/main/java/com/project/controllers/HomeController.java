@@ -26,7 +26,6 @@ public class HomeController {
 		List<ServicePackage> services = serviceRepo.findAll();
 		model.addAttribute("chosenService", chosenService );
 		model.addAttribute("services",services);
-		//model.addAttribute("user", null);
 		return "home";
 	}
 
