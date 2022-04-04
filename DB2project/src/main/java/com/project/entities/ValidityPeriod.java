@@ -28,6 +28,9 @@ public class ValidityPeriod {
 	
 	@ManyToMany(mappedBy = "validityPeriods")
 	private List<ServicePackage> servicePackages;
+	
+	@OneToMany(mappedBy="validityPeriod")
+	private List<Subscription> subscriptions;
 
 	public ValidityPeriod() {
 		super();
@@ -48,6 +51,14 @@ public class ValidityPeriod {
 
 	public void setMonths(int months) {
 		this.months = months;
+	}
+
+	public List<Subscription> getSubscriptions() {
+		return subscriptions;
+	}
+
+	public void setSubscriptions(List<Subscription> subscriptions) {
+		this.subscriptions = subscriptions;
 	}
 
 	public float getMonthlyFee() {

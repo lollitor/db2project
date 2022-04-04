@@ -2,12 +2,14 @@ package com.project.entities;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
@@ -24,6 +26,9 @@ public class OptionalProduct {
 	private List<ServicePackage> servicePackages;
 	
 	private String name;
+	
+	@ManyToMany(mappedBy = "optionalProducts")
+	private List<Subscription> subscriptions;
 	
 	@Column(name = "monthly_fee")
 	private float monthlyFee;
@@ -51,6 +56,14 @@ public class OptionalProduct {
 
 	public String getName() {
 		return name;
+	}
+
+	public List<Subscription> getSubscriptions() {
+		return subscriptions;
+	}
+
+	public void setSubscriptions(List<Subscription> subscriptions) {
+		this.subscriptions = subscriptions;
 	}
 
 	public void setName(String name) {

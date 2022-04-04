@@ -1,6 +1,7 @@
 package com.project.entities;
 
 import java.sql.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,6 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -30,9 +33,20 @@ public class Subscription {
 	@JoinColumn(name = "consumer")
 	private Consumer consumer;
 	
+	@ManyToMany
+	@JoinTable(name = "subscription_has_optional_product", joinColumns = {
+			@JoinColumn(name = "subscription")}, inverseJoinColumns = {
+					@JoinColumn(name = "optional_product")
+			})
+	private List<OptionalProduct> optionalProducts;
+	
 	@ManyToOne
 	@JoinColumn(name = "package")
 	private ServicePackage servicePackage;
+	
+	@ManyToOne
+	@JoinColumn(name = "validity_period")
+	private ValidityPeriod validityPeriod;
 	
 	@OneToOne(mappedBy = "serviceSubscription")
 	private Order order;
@@ -60,6 +74,23 @@ public class Subscription {
 
 	public Consumer getConsumer() {
 		return consumer;
+	}
+
+	public List<OptionalProduct> getOptionalProducts() {
+		return optionalProducts;
+	}
+	
+
+	public ValidityPeriod getValidityPeriod() {
+		return validityPeriod;
+	}
+
+	public void setValidityPeriod(ValidityPeriod validityPeriod) {
+		this.validityPeriod = validityPeriod;
+	}
+
+	public void setOptionalProducts(List<OptionalProduct> optionalProducts) {
+		this.optionalProducts = optionalProducts;
 	}
 
 	public void setConsumer(Consumer consumer) {
