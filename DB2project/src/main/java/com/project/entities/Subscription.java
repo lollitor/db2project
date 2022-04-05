@@ -113,6 +113,11 @@ public class Subscription {
 		this.order = order;
 	}
 	
+	@Override
+	public String toString() {
+		return "id: "+this.getId()+" user: "+this.getConsumer().getUsername()+ " validity period: "+this.getValidityPeriod().getMonthlyFee();
+	}
+	
 	
 
 }
