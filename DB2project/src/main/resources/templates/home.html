@@ -75,9 +75,51 @@
       </tr>
     </tbody>
   </table>
+  <span th:unless="${subscriptions == null}"> Welcome back <a th:text="${user.username}">!</a>
+  <table>
+    <thead>
+      <tr>
+        <th >Service</th>
+        <th >Optionals</th>
+        <th >Validity Period</th>
+        <th >Activation Date</th>
+        <th >Total Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:each="s : ${subscriptions}">
+      
+      <td th:text="${s.servicePackage.name}"></td>
+        
+        
+        <td>
+          <table>
+            <tbody>
+              <tr th:each="o : ${s.optionalProducts}">
+                <td th:text="${o.name}"></td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+        
+         
+           
+              <td th:text="${s.validityPeriod.monthlyFee}+' EUR per '+${s.validityPeriod.months}+' months'"> </td>
+              
+              <td th:text="${s.activationDate}"> </td>
+              
+           <td th:text="${price}+ ' EUR'"> </td>
+         
+        
+  
+    </tbody>
+  </table>
+  </span>
+    <span th:if="${user ==null}"><a th:href="@{/login}">sign in to buy a service package!</a>
+    
+     </span>
 </div>
-    <span th:if="${user == null}"><a th:href="@{/login}">sign in to buy a service package!</a></span>
-    <span th:unless="${user ==null}">Welcome back <a th:text="${user.username}">!</a> </span>
+    
 
 </body>
 </html>

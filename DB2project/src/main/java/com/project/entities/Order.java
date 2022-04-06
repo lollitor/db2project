@@ -1,6 +1,7 @@
 package com.project.entities;
 
 import java.sql.Timestamp;
+import java.time.Instant;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,17 +15,17 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name="order")
+@Table(name="purchase")
 public class Order {
 	
-	@Id @Column(name = "order")
+	@Id @Column(name = "purchase")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
 	
-	private Timestamp timestamp;
+	private Timestamp timecode;
 	
-	private float value;
+	private float price;
 	
 	
 	private int rejected;
@@ -48,20 +49,20 @@ public class Order {
 		this.id = id;
 	}
 
-	public Timestamp getTimestamp() {
-		return timestamp;
+	public Timestamp getTimecode() {
+		return timecode;
 	}
 
-	public void setTimestamp(Timestamp timestamp) {
-		this.timestamp = timestamp;
+	public void setTimecode(Timestamp timecode) {
+		this.timecode = timecode;
 	}
 
-	public float getValue() {
-		return value;
+	public float getPrice() {
+		return price;
 	}
 
-	public void setValue(float value) {
-		this.value = value;
+	public void setPrice(float price) {
+		this.price = price;
 	}
 
 	public int getRejected() {
@@ -76,8 +77,8 @@ public class Order {
 		return valid;
 	}
 
-	public void setValid(Byte valid) {
-		this.valid = valid;
+	public void setValid(Byte b) {
+		this.valid = b;
 	}
 
 	public Subscription getServiceSubscription() {
